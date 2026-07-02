@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Stone Arch CRM — Small Business Guide</title>
+<style>
+  :root{
+    --nav:#0f172a; --nav2:#1e293b; --ink:#0f172a; --body:#334155; --muted:#64748b;
+    --line:#e2e8f0; --bg:#f8fafc; --card:#ffffff; --blue:#2563eb; --blue-d:#1d4ed8;
+    --green:#16a34a; --amber:#d97706; --violet:#7c3aed; --soft:#eff6ff;
+    --shadow:0 1px 3px rgba(15,23,42,.08),0 1px 2px rgba(15,23,42,.04);
+    --shadow-l:0 10px 30px rgba(15,23,42,.12);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--body);background:var(--bg);line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:var(--blue);text-decoration:none} a:hover{text-decoration:underline} a{cursor:pointer}
+  .wrap{display:grid;grid-template-columns:280px 1fr;min-height:100vh}
+  aside{position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;background:var(--nav);color:#cbd5e1;padding:22px 14px}
+  .brand{display:flex;align-items:center;gap:10px;padding:6px 8px 16px}
+  .logo{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,#3b82f6,#7c3aed);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:15px;flex:0 0 auto}
+  .brand b{color:#fff;font-size:15px;display:block;line-height:1.2}
+  .brand span{font-size:11.5px;color:#94a3b8}
+  .navsearch{width:100%;margin:4px 0 14px;padding:9px 11px;border-radius:9px;border:1px solid #334155;background:#0b1220;color:#e2e8f0;font-size:13px}
+  .navsearch::placeholder{color:#64748b}
+  .navgroup{font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:#64748b;margin:16px 8px 6px;font-weight:700}
+  .navlink{display:flex;align-items:center;gap:10px;width:100%;text-align:left;border:0;background:transparent;color:#cbd5e1;
+    padding:8px 10px;border-radius:8px;cursor:pointer;font-size:13.5px;font-family:inherit;transition:.12s}
+  .navlink:hover{background:#1e293b;color:#fff}
+  .navlink.active{background:var(--blue);color:#fff;font-weight:600}
+  .navlink .ic{width:18px;text-align:center;font-size:14px;opacity:.9}
+  .navlink.hide{display:none}
+  main{padding:0 0 80px}
+  .topbar{position:sticky;top:0;z-index:5;background:rgba(248,250,252,.86);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);padding:14px 40px;display:flex;align-items:center;justify-content:space-between}
+  .topbar h2{margin:0;font-size:15px;color:var(--muted);font-weight:600}
+  .pill{font-size:12px;background:#dcfce7;color:#15803d;border:1px solid #bbf7d0;padding:4px 10px;border-radius:999px}
+  .pane{display:none;padding:34px 40px 0;max-width:1000px;margin:0 auto;animation:fade .25s ease}
+  .pane.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  h1{font-size:30px;color:var(--ink);margin:0 0 6px;letter-spacing:-.02em}
+  .lede{font-size:16px;color:var(--muted);margin:0 0 22px}
+  h3{font-size:19px;color:var(--ink);margin:28px 0 10px;letter-spacing:-.01em}
+  h4{font-size:13px;color:var(--ink);margin:18px 0 8px;text-transform:uppercase;letter-spacing:.04em}
+  p{margin:0 0 12px}
+  .note{border-left:4px solid var(--blue);background:var(--soft);padding:12px 16px;border-radius:0 10px 10px 0;margin:14px 0;font-size:14.5px}
+  .note.tip{border-color:var(--green);background:#f0fdf4}
+  .note.warn{border-color:var(--amber);background:#fffbeb}
+  .note b{color:var(--ink)}
+  ol.steps{counter-reset:s;list-style:none;padding:0;margin:10px 0}
+  ol.steps li{position:relative;padding:8px 0 8px 42px;border-bottom:1px dashed var(--line);font-size:14.5px}
+  ol.steps li:last-child{border-bottom:0}
+  ol.steps li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:7px;width:26px;height:26px;
+    background:var(--blue);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700}
+  ul.clean{list-style:none;padding:0;margin:8px 0}
+  ul.clean li{padding:6px 0 6px 26px;position:relative;font-size:14.5px;border-bottom:1px solid #f1f5f9}
+  ul.clean li:last-child{border-bottom:0}
+  ul.clean li::before{content:"";position:absolute;left:6px;top:13px;width:7px;height:7px;border-radius:50%;background:var(--blue)}
+  ol.legend{counter-reset:l;list-style:none;padding:0;margin:12px 0 0}
+  ol.legend li{position:relative;padding:9px 0 9px 40px;font-size:14px;border-bottom:1px solid #f1f5f9}
+  ol.legend li:last-child{border-bottom:0}
+  ol.legend li::before{counter-increment:l;content:counter(l);position:absolute;left:0;top:8px;width:24px;height:24px;
+    background:var(--ink);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+  ol.legend b{color:var(--ink)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;box-shadow:var(--shadow);margin:14px 0}
+  figure.shot{margin:8px 0 4px;border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);background:#fff}
+  figure.shot .frame{max-height:560px;overflow:auto;background:#f1f5f9}
+  figure.shot img{width:100%;display:block}
+  .shotwrap{position:relative;width:100%}
+  .pin{position:absolute;transform:translate(-50%,-50%);width:26px;height:26px;border-radius:50%;
+    background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;
+    font-weight:800;cursor:pointer;box-shadow:0 0 0 4px rgba(37,99,235,.25),var(--shadow-l);z-index:3;
+    border:2px solid #fff;transition:transform .1s}
+  .pin:hover{transform:translate(-50%,-50%) scale(1.18)}
+  .pin.ping{animation:pingpin .6s ease}
+  @keyframes pingpin{0%{box-shadow:0 0 0 0 rgba(37,99,235,.55),var(--shadow-l)}100%{box-shadow:0 0 0 18px rgba(37,99,235,0),var(--shadow-l)}}
+  ol.legend li.hl{background:#fef9c3;border-radius:8px;box-shadow:0 0 0 6px #fef9c3}
+  figure.shot figcaption{font-size:12px;color:var(--muted);padding:8px 12px;border-top:1px solid var(--line);background:#fff;display:flex;justify-content:space-between;align-items:center;gap:12px}
+  figure.shot figcaption a{font-weight:600;white-space:nowrap}
+  .conmap{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+  .con{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;box-shadow:var(--shadow)}
+  .con b{color:var(--ink);display:block;margin-bottom:3px}
+  .con small{color:var(--muted);font-size:13px}
+  .crumbs{font-size:12.5px;color:var(--muted);margin-bottom:14px}
+  .next{display:flex;justify-content:space-between;margin:32px 0 0;border-top:1px solid var(--line);padding-top:18px}
+  .next button{background:#fff;border:1px solid var(--line);border-radius:10px;padding:11px 16px;cursor:pointer;font-family:inherit;font-size:13.5px;color:var(--body);font-weight:600;box-shadow:var(--shadow)}
+  .next button:hover{border-color:var(--blue);color:var(--blue)}
+  .next button.spacer{visibility:hidden}
+  dl.gloss{margin:0}
+  dl.gloss dt{font-weight:700;color:var(--ink);margin-top:16px;font-size:15px}
+  dl.gloss dd{margin:4px 0 0;font-size:14.5px;color:var(--body)}
+  dl.gloss dd.where{font-size:12.5px;color:var(--muted);margin-top:3px}
+  @media(max-width:880px){
+    .wrap{grid-template-columns:1fr} aside{display:none}
+    .pane{padding:24px 18px 0}.topbar{padding:12px 18px}
+    .grid2,.conmap{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <aside>
+    <div class="brand">
+      <div class="logo">cM</div>
+      <div><b>Stone Arch CRM</b><span>Small-Business Guide</span></div>
+    </div>
+    <input id="navsearch" class="navsearch" placeholder="🔍  Filter sections…" oninput="filterNav(this.value)" />
+
+    <div class="navgroup">Start here</div>
+    <button class="navlink active" data-k="welcome"><span class="ic">👋</span>Welcome &amp; orientation</button>
+    <button class="navlink" data-k="dashboard"><span class="ic">🏠</span>Dashboard</button>
+
+    <div class="navgroup">People &amp; money</div>
+    <button class="navlink" data-k="members"><span class="ic">👥</span>Members</button>
+    <button class="navlink" data-k="contacts"><span class="ic">📇</span>Contacts</button>
+    <button class="navlink" data-k="pipeline"><span class="ic">📈</span>Sales Pipeline</button>
+    <button class="navlink" data-k="companies"><span class="ic">🏢</span>Companies</button>
+
+    <div class="navgroup">Getting work done</div>
+    <button class="navlink" data-k="calendar"><span class="ic">📅</span>Calendar</button>
+    <button class="navlink" data-k="projects"><span class="ic">🗂️</span>Projects</button>
+    <button class="navlink" data-k="tasks"><span class="ic">✅</span>Tasks</button>
+    <button class="navlink" data-k="voice"><span class="ic">🎙️</span>Voice Notes</button>
+
+    <div class="navgroup">Outreach</div>
+    <button class="navlink" data-k="events"><span class="ic">🎟️</span>Events</button>
+    <button class="navlink" data-k="email"><span class="ic">✉️</span>Email Marketing</button>
+    <button class="navlink" data-k="content"><span class="ic">📚</span>Content Repository</button>
+
+    <div class="navgroup">Admin &amp; reference</div>
+    <button class="navlink" data-k="admin"><span class="ic">🛠️</span>Admin &amp; Member Clients</button>
+    <button class="navlink" data-k="workflow"><span class="ic">🧭</span>Daily workflow</button>
+    <button class="navlink" data-k="glossary"><span class="ic">📖</span>Glossary</button>
+  </aside>
+
+  <main>
+    <div class="topbar">
+      <h2 id="crumb">Welcome &amp; orientation</h2>
+      <span class="pill">cM CRM · crm.stonearch.ai</span>
+    </div>
+
+    <!-- WELCOME -->
+    <section class="pane active" id="welcome">
+      <h1>Welcome to your CRM</h1>
+      <p class="lede">A plain-English guide to running your business out of one system — your people, your money, your work, and your outreach, all in one place.</p>
+
+      <div class="note"><b>What this is.</b> A <b>CRM</b> (Customer Relationship Management) is one organized home for everyone you do business with and everything tied to them: what they've bought, what you're working on, and what you send them. Instead of scattered spreadsheets and inboxes, it all lives here. This build also keeps a light <b>Grants</b> thread for the grant work you manage.</p>
+
+      <h3>The five ideas the whole system runs on</h3>
+      <div class="conmap">
+        <div class="con"><b>Member</b><small>A person you do business with — a customer, prospect, or supporter. Lives in <b>Members</b>, each with a full history.</small></div>
+        <div class="con"><b>Payment &amp; Commitment</b><small>A <b>payment</b> is money received. A <b>commitment</b> is money promised for later. You record both on a member's profile.</small></div>
+        <div class="con"><b>Deal / Sales Pipeline</b><small>A sale you're working toward, moving through stages from first contact to closed. Lives in <b>Sales Pipeline</b>.</small></div>
+        <div class="con"><b>Company &amp; Member Client</b><small><b>Companies</b> = orgs you're courting (a BD pipeline). <b>Member Clients</b> (in Admin) = accounts set up on the CRM.</small></div>
+      </div>
+
+      <h3>How the menu is organized</h3>
+      <ul class="clean">
+        <li><b>Main</b> — people and money: Dashboard, Members, Contacts, Sales Pipeline, Companies.</li>
+        <li><b>Work</b> — getting things done: Calendar, Projects, Tasks, Voice Notes.</li>
+        <li><b>Events &amp; Programs</b> — Events you host and registrations.</li>
+        <li><b>Marketing</b> — Email Marketing campaigns and the Content Repository.</li>
+        <li><b>Finance</b> — Payments and Financial Runway.</li>
+        <li><b>Admin</b> — Member Clients, Integrations, and system settings (for owners/admins).</li>
+      </ul>
+
+      <div class="note tip"><b>How to read this guide.</b> Each section shows a real screenshot of the screen in a scrollable frame, followed by a numbered list explaining the important buttons. Use the menu on the left (or the filter box) to jump around.</div>
+      <div class="note warn"><b>The yellow bar</b> at the top of every screen ("Support Mode Active — TailoredU team is viewing this instance") just means the vendor can see the system to help you. It's informational — keep working normally.</div>
+
+      <div class="next"><button class="spacer">.</button><button onclick="go('dashboard')">Next: Dashboard →</button></div>
+    </section>
+
+    <!-- DASHBOARD -->
+    <section class="pane" id="dashboard">
+      <div class="crumbs">Start here · Dashboard</div>
+      <h1>Dashboard</h1>
+      <p class="lede">Your home base — the first screen after you log in. It answers one question: "What needs my attention right now?"</p>
+      <figure class="shot"><div class="frame"><div class="shotwrap"><img src="screenshots/01-dashboard.png" alt="Dashboard" loading="lazy"><span class="pin" data-n="1" style="left:42%;top:24%" title="Quick actions">1</span><span class="pin" data-n="2" style="left:33%;top:45%" title="My Tasks">2</span><span class="pin" data-n="3" style="left:82%;top:40%" title="cM Customers">3</span><span class="pin" data-n="4" style="left:33%;top:74%" title="Recent Activity">4</span><span class="pin" data-n="5" style="left:82%;top:90%" title="Stripe">5</span></div></div>
+        <figcaption><span>The Dashboard home screen.</span><a href="screenshots/01-dashboard.png" target="_blank">Open full image ↗</a></figcaption></figure>
+      <ol class="legend">
+        <li><b>Quick actions</b> (top row) — one-click shortcuts to the things you do most: add a member, start a new deal, send email, open your calendar or projects.</li>
+        <li><b>My Tasks</b> — everything assigned to you across the whole system, in one spot. "All caught up" means nothing's waiting.</li>
+        <li><b>cM Customers</b> — a quick count of member-client accounts that are Active vs. Pending setup.</li>
+        <li><b>Recent Activity</b> — a live feed of what changed: new members added, deal status changes. Your "what did I miss?" glance.</li>
+        <li><b>Stripe</b> (bottom-right card) — connect Stripe so online payments and subscriptions flow into the CRM automatically. Ask an admin before connecting.</li>
+      </ol>
+      <div class="note tip"><b>Daily habit:</b> read Recent Activity top-to-bottom, then check My Tasks. Fifteen seconds tells you what needs you today.</div>
+      <div class="next"><button onclick="go('welcome')">← Welcome</button><button onclick="go('members')">Next: Members →</button></div>
+    </section>
+
+    <!-- MEMBERS -->
+    <section class="pane" id="members">
+      <div class="crumbs">People &amp; money · Members</div>
+      <h1>Members</h1>
+      <p class="lede">Your customer database — the heart of the CRM. Every customer, prospect, and supporter is a card here, and clicking one opens their full history.</p>
+      <figure class="shot"><div class="frame"><div class="shotwrap"><img src="screenshots/02-members.png" alt="Members list" loading="lazy"><span class="pin" data-n="1" style="left:93%;top:11%" title="Add Member">1</span><span class="pin" data-n="2" style="left:74%;top:11%" title="Bulk Import / Clean Emails">2</span><span class="pin" data-n="3" style="left:52%;top:17%" title="Lapsed Members filter">3</span><span class="pin" data-n="4" style="left:30%;top:33%" title="Lifetime Value">4</span></div></div>
+        <figcaption><span>The Members list (grid view).</span><a href="screenshots/02-members.png" target="_blank">Open full image ↗</a></figcaption></figure>
+      <ol class="legend">
+        <li><b>Add Member</b> (top-right) — create one new person by hand. The grid/list toggle beside it switches between picture cards and a compact table.</li>
+        <li><b>Bulk Import &amp; Clean Emails</b> — import many members at once from a spreadsheet, and run a cleanup that flags bad or duplicate email addresses.</li>
+        <li><b>Lapsed Members</b> filter — flip it on to instantly show people who bought last year but nothing yet this year: your prime win-back list.</li>
+        <li><b>Lifetime Value</b> (on each card) — the total a member has ever paid you. The quickest read on how significant a relationship is.</li>
+      </ol>
+
+      <h3>The 360° Customer View</h3>
+      <p>Click any card to open the full profile in a pop-up. This is where you'll spend most of your time with an individual customer.</p>
+      <figure class="shot"><div class="frame"><div class="shotwrap"><img src="screenshots/03-customer-360.png" alt="360 Customer View" loading="lazy"><span class="pin" data-n="1" style="left:66%;top:16%" title="Log Interaction">1</span><span class="pin" data-n="2" style="left:40%;top:44%" title="Contact Information">2</span><span class="pin" data-n="3" style="left:42%;top:73%" title="Payment History">3</span></div></div>
+        <figcaption><span>The 360° Customer View pop-up.</span><a href="screenshots/03-customer-360.png" target="_blank">Open full image ↗</a></figcaption></figure>
+      <ol class="legend">
+        <li><b>Log Interaction</b> — record a call, meeting, or email so the relationship history stays complete.</li>
+        <li><b>Contact Information</b> — email (with a Send Email button) and mailing address.</li>
+        <li><b>Payment History</b> — total revenue plus three actions: <b>Record Payment</b> (money received), <b>Record Commitment</b> (money promised), and <b>Track Major Deal</b> (start a pipeline opportunity).</li>
+        <li><b>Linked Grants, Relationships, Related Tasks</b> — connect the person to a grant, link them to a company or another member, or create a follow-up to-do tied to them.</li>
+      </ol>
+      <h4>Try it: record a payment</h4>
+      <ol class="steps">
+        <li>Click a member's card to open the 360° view.</li>
+        <li>Scroll to <b>Payment History</b> and click <b>Record Payment</b>.</li>
+        <li>Enter the amount and date, then save — watch Lifetime Value update.</li>
+        <li>Optional: click <b>Log Interaction</b> to note the thank-you call you'll make.</li>
+      </ol>
+      <div class="note"><b>Members vs. Contacts:</b> Members are the people money flows from (customers, with payment histories). <b>Contacts</b> is a simpler directory of everyone else — vendors, partners, advisors. Next section.</div>
+      <div class="next"><button onclick="go('dashboard')">← Dashboard</button><button onclick="go('contacts')">Next: Contacts →</button></div>
+    </section>
+
+    <!-- CONTACTS -->
+    <section class="pane" id="contacts">
+      <div class="crumbs">People &amp; money · Contacts</div>
+      <h1>Contacts</h1>
+      <p class="lede">A straightforward address book of everyone who isn't a customer — vendors, partners, advisors, lobbyists. No payment history, just who they are and how to reach them.</p>
+      <figure class="shot"><div class="frame"><div class="shotwrap"><img src="screenshots/04-contacts.png" alt="Contacts" loading="lazy"><span class="pin" data-n="1" style="left:32%;top:23%" title="Search">1</span><span class="pin" data-n="2" style="left:55%;top:23%" title="Type filter">2</span><span class="pin" data-n="3" style="left:92%;top:36%" title="Type column">3</span></div></div>
+        <figcaption><span>The Contacts directory.</span><a href="screenshots/04-contacts.png" target="_blank">Open full image ↗</a></figcaption></figure>
+      <ol class="legend">
+        <li><b>Search</b> — find anyone by name, email, or job title.</li>
+        <li><b>Type filter</b> — narrow the list to a category of contact.</li>
+        <li><b>Type column</b> — labels each record (e.g. "General Contact") so you can tell roles apart at a glance.</li>
+      </ol>
+      <div class="note tip"><b>Rule of thumb:</b> if money flows from this person, they belong in <a onclick="go('members')">Members</a>. If they're a professional relationship, they belong here in Contacts.</div>
+      <div class="next"><button onclick="go('members')">← Members</button><button onclick="go('pipeline')">Next: Sales Pipeline →</button></div>
+    </section>
+
+    <!-- PIPELINE -->
+    <section class="pane" id="pipeline">
+      <div class="crumbs">People &amp; money · Sales Pipeline</div>
+      <h1>Sales Pipeline</h1>
+      <p class="lede">A health dashboard for the deals you're working toward. It shows how much money is "in flight," how likely it is to land, and where deals get stuck.</p>
+      <figure class="shot"><div class="frame"><div class="shotwrap"><img src="screenshots/06-sales-pipeline.png" alt="Sales Pipeline" loading="lazy"><span class="pin" data-n="1" style="left:28%;top:17%" title="Tabs">1</span><span class="pin" data-n="2" style="left:30%;top:30%" title="Customer Lifetime Value">2</span><span class="pin" data-n="3" style="left:78%;top:30%" title="Customer Acquisition Cost">3</span><span class="pin" data-n="4" style="left:62%;top:48%" title="Average Deal Size">4</span></div></div>
+        <figcaption><span>The Sales Pipeline (Pipeline Health Dashboard).</span><a href="screenshots/06-sales-pipeline.png" target="_blank">Open full image ↗</a></figcaption></figure>
+      <ol class="legend">
+        <li><b>Three tabs</b> — <b>Sales Pipeline</b> (deals), <b>Programs</b> (program health), and <b>Client Engagements</b>.</li>
+        <li><b>Customer Lifetime Value</b> — money realized plus what's still in the pipeline. <b>Pipeline Conversion</b> — the share of deals that turn into revenue.</li>
+        <li><b>Customer Acquisition Cost</b> — roughly what it costs to land each deal; an efficiency check.</li>
+        <li><b>Average Deal Size &amp; Total Opportunities</b> — plus, lower down, stage distribution and insights that flag stages converting below 30% as bottlenecks.</li>
+      </ol>
+      <div class="note"><b>How a deal gets here:</b> open a member's 360° view and click <b>Track Major Deal</b>. That creates a pipeline opportunity that moves through stages (prospecting → qualifying → proposal → closed) and shows up on this dashboard. "Weighted" value = the dollar amount × its probability of closing.</div>
+      <div class="next"><button onclick="go('contacts')">← Contacts</button><button onclick="go('companies')">Next: Companies →</button></div>
+    </section>
+
+    <!-- COMPANIES -->
+    <section class="pane" id="companies">
+      <div class="crumbs">People &amp; money · Companies</div>
+      <h1>Companies</h1>
+      <p class="lede">A pipeline of organizations you're courting as partners or accounts — separate from individual customers. Track each one from first contact through to active partner.</p>
+      <figure class="shot"><div class="frame"><div class="shotwrap"><img src="screenshots/07-companies.png" alt="Companies" loading="lazy"><span class="pin" data-n="1" style="left:91%;top:14%" title="Add Company">1</span><span class="pin" data-n="2" style="left:28%;top:28%" title="KPIs">2</span><span class="pin" data-n="3" style="left:30%;top:50%" title="Stages">3</span><span class="pin" data-n="4" style="left:88%;top:40%" title="View toggle">4</span></div></div>
+        <figcaption><span>The Companies pipeline.</span><a href="screenshots/07-companies.png" target="_blank">Open full image ↗</a></figcaption></figure>
+      <ol class="legend">
+        <li><b>Add Company</b> — add a new organization to the pipeline.</li>
+        <li><b>KPIs</b> — Total Companies, Prospects, In Pipeline, Active Partners at a glance.</li>
+        <li><b>Stages</b> — Prospects → Contacted → In Conversation → Pilot → Active Partners. Drag a card along as the relationship progresses.</li>
+        <li><b>Pipeline / Kanban / List</b> (top-right) — three ways to view the same companies.</li>
+      </ol>
+      <div class="note"><b>Companies vs. Member Clients:</b> Companies are organizations you're <i>pursuing</i>. <b>Member Clients</b> (in the Admin menu) are accounts already <i>set up</i> on the CRM. Different jobs — see the Admin section.</div>
+      <div class="next"><button onclick="go('pipeline')">← Sales Pipeline</button><button onclick="go('calendar')">Next: Calendar →</button></div>
+    </section>
+
+    <!-- CALENDAR -->
+    <section class="pane" id="calendar">
+      <div class="crumbs">Getting work done · Calendar</div>
+      <h1>Calendar</h1>
+      <p class="lede">Connects your Microsoft 365 calendar so your meetings live alongside your customer work — and helps you prep for them.</p>
+      <figure class="shot"><div class="frame"><div class="shotwrap"><img src="screenshots/08-calendar.png" alt="Calendar" loading="lazy"><span class="pin" data-n="1" style="left:30%;top:33%" title="Tabs">1</span><span class="pin" data-n="2" style="left:62%;top:63%" title="Connect Calendar">2</span></div></div>
+        <figcaption><span>Calendar before connecting.</span><a href="screenshots/08-calendar.png" target="_blank">Open full image ↗</a></figcaption></figure>
+      <ol class="legend">
+        <li><b>Two tabs</b> — Upcoming Meetings (your synced events) and Settings (sync preferences).</li>
+        <li><b>Connect Calendar</b> — links Microsoft 365 once. After that, meetings appear automatically and you can attach prep tasks to each.</li>
+      </ol>
+      <div class="note tip"><b>Why connect:</b> once synced, a "meeting with a customer" turns into linked prep work and follow-ups without re-typing anything. Check with your admin about which account to connect.</div>
+      <div class="next"><button onclick="go('companies')">← Companies</button><button onclick="go('projects')">Next: Projects →</button></div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="pane" id="projects">
+      <div class="crumbs">Getting work done · Projects</div>
+      <h1>Projects</h1>
+      <p class="lede">Visual "boards" for managing work — like sticky notes on a wall that you drag from one column to the next as work progresses. Great for launches, grant applications, and team initiatives.</p>
+      <figure class="shot"><div class="frame"><div class="shotwrap"><img src="screenshots/09-projects.png" alt="Projects list" loading="lazy"><span class="pin" data-n="1" style="left:88%;top:19%" title="New Board / From Template">1</span><span class="pin" data-n="2" style="left:55%;top:29%" title="Filters">2</span><span class="pin" data-n="3" style="left:45%;top:52%" title="Board cards">3</span></div></div>
+        <figcaption><span>The Projects board picker.</span><a href="screenshots/09-projects.png" target="_blank">Open full image ↗</a></figcaption></figure>
+      <ol class="legend">
+        <li><b>New Board / From Template</b> — start a board from scratch or from a ready-made template.</li>
+        <li><b>Filters</b> — narrow to My Boards, Ideas, or Archived so the list stays manageable.</li>
+        <li><b>Board cards</b> — each shows its card count, members, and a type label. A board can be <b>Linked</b> to a grant or deal so the work and the money stay connected.</li>
+      </ol>
+      <h4>Inside a board (the Kanban view)</h4>
+      <figure class="shot"><div class="frame"><div class="shotwrap"><img src="screenshots/10-projects-board.png" alt="Kanban board" loading="lazy"><span class="pin" data-n="1" style="left:45%;top:33%" title="Columns = stages">1</span><span class="pin" data-n="2" style="left:30%;top:46%" title="Cards = tasks">2</span><span class="pin" data-n="3" style="left:82%;top:21%" title="AI helpers">3</span></div></div>
+        <figcaption><span>A board's Kanban columns.</span><a href="screenshots/10-projects-board.png" target="_blank">Open full image ↗</a></figcaption></figure>
+      <ol class="legend">
+        <li><b>Columns = stages.</b> Work flows left to right (Done → In Progress → This Week → Next 2 Weeks). "P0" means top priority, "P1" next. Drag a card to a new column as it progresses.</li>
+        <li><b>Cards = tasks.</b> Each has a title, a short note tagged by area, and a priority badge.</li>
+        <li><b>AI helpers</b> — <b>Parse Agenda</b> turns a pasted meeting agenda into cards automatically; <b>AI Suggest</b> proposes next-step cards. Big time-savers.</li>
+      </ol>
+      <div class="next"><button onclick="go('calendar')">← Calendar</button><button onclick="go('tasks')">Next: Tasks →</button></div>
+    </section>
+
+    <!-- TASKS -->
+    <section class="pane" id="tasks">
+      <div class="crumbs">Getting work done · Tasks</div>
+      <h1>Tasks</h1>
+      <p class="lede">One unified to-do list that gathers tasks from everywhere in the system — projects, members, voice notes — so nothing slips through the cracks.</p>
+      <figure class="shot"><div class="frame"><div class="shotwrap"><img src="screenshots/11-tasks.png" alt="Tasks" loading="lazy"><span class="pin" data-n="1" style="left:30%;top:30%" title="Three views">1</span><span class="pin" data-n="2" style="left:84%;top:19%" title="Sync All Sources">2</span><span class="pin" data-n="3" style="left:24%;top:46%" title="Estimate ROI">3</span></div></div>
+        <figcaption><span>The unified Tasks view.</span><a href="screenshots/11-tasks.png" target="_blank">Open full image ↗</a></figcaption></figure>
+      <ol class="legend">
+        <li><b>Three views</b> — <b>My Tasks</b> (just yours), <b>All Tasks</b> (the whole team's), and <b>ROI Dashboard</b> (which work is paying off).</li>
+        <li><b>Sync All Sources</b> — pull in the latest tasks from projects, members, and other modules so the list is current.</li>
+        <li><b>Estimate ROI</b> — an AI helper that gauges a task's likely payoff, so you can prioritize the high-value work.</li>
+      </ol>
+      <div class="note"><b>Tasks vs. Projects:</b> Projects show work visually on a board; Tasks is the flat checklist pulled together from all those boards and modules. Projects to <i>organize</i>, Tasks to make sure <i>nothing is forgotten</i>.</div>
+      <div class="next"><button onclick="go('projects')">← Projects</button><button onclick="go('voice')">Next: Voice Notes →</button></div>
+    </section>
+
+    <!-- VOICE -->
+    <section class="pane" id="voice">
+      <div class="crumbs">Getting work done · Voice Notes</div>
+      <h1>Voice Notes</h1>
+      <p class="lede">Record or upload a meeting and the system transcribes it, then automatically pulls out new contacts and follow-up steps. Perfect after a networking event or customer lunch.</p>
+      <figure class="shot"><div class="frame"><div class="shotwrap"><img src="screenshots/12-voice-notes.png" alt="Voice Notes" loading="lazy"><span class="pin" data-n="1" style="left:82%;top:22%" title="New Recording / Upload">1</span><span class="pin" data-n="2" style="left:35%;top:48%" title="Stat cards">2</span><span class="pin" data-n="3" style="left:30%;top:65%" title="Tabs">3</span></div></div>
+        <figcaption><span>The Voice Notes home.</span><a href="screenshots/12-voice-notes.png" target="_blank">Open full image ↗</a></figcaption></figure>
+      <ol class="legend">
+        <li><b>New Recording / Upload Meeting</b> — record live in the browser, or upload an audio/video file of a meeting you already had.</li>
+        <li><b>Stat cards</b> — recordings made, new contacts it created, follow-ups still pending, and notes added.</li>
+        <li><b>Tabs</b> — read the <b>Transcripts</b>, work your auto-generated <b>Next Steps</b>, and see what teammates captured.</li>
+      </ol>
+      <div class="note tip"><b>The magic:</b> after a recording, the system suggests new contacts mentioned and a list of follow-up tasks — so a 30-minute coffee chat becomes clean records and to-dos with no manual typing.</div>
+      <div class="next"><button onclick="go('tasks')">← Tasks</button><button onclick="go('events')">Next: Events →</button></div>
+    </section>
+
+    <!-- EVENTS -->
+    <section class="pane" id="events">
+      <div class="crumbs">Outreach · Events</div>
+      <h1>Events</h1>
+      <p class="lede">Create and manage your events — workshops, webinars, open houses — and track who registers.</p>
+      <figure class="shot"><div class="frame"><div class="shotwrap"><img src="screenshots/13-events.png" alt="Events" loading="lazy"><span class="pin" data-n="1" style="left:88%;top:19%" title="Create Event">1</span><span class="pin" data-n="2" style="left:30%;top:30%" title="Search & status filter">2</span></div></div>
+        <figcaption><span>The Events screen.</span><a href="screenshots/13-events.png" target="_blank">Open full image ↗</a></figcaption></figure>
+      <ol class="legend">
+        <li><b>Create Event</b> — opens a form for name, type, date/time, location (in-person / virtual / hybrid), and venue.</li>
+        <li><b>Search &amp; status filter</b> — find an event and filter by where it stands (upcoming, past, etc.).</li>
+      </ol>
+      <div class="note"><b>Connects to your members:</b> registrations tie back to member records, so you can see who attended and follow up — and pair events with an <a onclick="go('email')">Email Marketing</a> invite.</div>
+      <div class="next"><button onclick="go('voice')">← Voice Notes</button><button onclick="go('email')">Next: Email Marketing →</button></div>
+    </section>
+
+    <!-- EMAIL -->
+    <section class="pane" id="email">
+      <div class="crumbs">Outreach · Email Marketing</div>
+      <h1>Email Marketing</h1>
+      <p class="lede">Send email campaigns to your contacts and see how they perform — opens, clicks, deliveries — all in one place.</p>
+      <figure class="shot"><div class="frame"><div class="shotwrap"><img src="screenshots/14-email-marketing.png" alt="Email Marketing" loading="lazy"><span class="pin" data-n="1" style="left:88%;top:19%" title="New Campaign">1</span><span class="pin" data-n="2" style="left:35%;top:33%" title="Performance metrics">2</span><span class="pin" data-n="3" style="left:30%;top:55%" title="Status tabs">3</span></div></div>
+        <figcaption><span>The Email Marketing dashboard.</span><a href="screenshots/14-email-marketing.png" target="_blank">Open full image ↗</a></figcaption></figure>
+      <ol class="legend">
+        <li><b>New Campaign</b> — build and send a new email to a chosen group.</li>
+        <li><b>Performance metrics</b> — Delivered, Average Open Rate, and Average Click Rate tell you whether people actually read it.</li>
+        <li><b>Status tabs</b> — follow a campaign through its life: Draft → Scheduled → Sending → Sent.</li>
+      </ol>
+      <div class="note warn"><b>Before a real send:</b> double-check your recipient list and have someone proof the draft. A campaign goes to many people at once and can't be un-sent.</div>
+      <div class="next"><button onclick="go('events')">← Events</button><button onclick="go('content')">Next: Content →</button></div>
+    </section>
+
+    <!-- CONTENT -->
+    <section class="pane" id="content">
+      <div class="crumbs">Outreach · Content Repository</div>
+      <h1>Content Repository</h1>
+      <p class="lede">A reusable library of writing for proposals and grant applications — mission statements, budgets, impact narratives. Stop rewriting the same paragraphs; find the best version and copy it.</p>
+      <figure class="shot"><div class="frame"><div class="shotwrap"><img src="screenshots/15-content.png" alt="Content Repository" loading="lazy"><span class="pin" data-n="1" style="left:88%;top:12%" title="Add Content">1</span><span class="pin" data-n="2" style="left:62%;top:20%" title="Semantic Search">2</span><span class="pin" data-n="3" style="left:40%;top:40%" title="Copy & usage count">3</span></div></div>
+        <figcaption><span>The Content Repository.</span><a href="screenshots/15-content.png" target="_blank">Open full image ↗</a></figcaption></figure>
+      <ol class="legend">
+        <li><b>Add Content</b> — save a new reusable snippet, optionally marking it a Template.</li>
+        <li><b>Semantic Search</b> — search by <i>meaning</i>, not just exact words. Type "how we help customers" and it finds the right paragraph even if those words aren't in it.</li>
+        <li><b>Copy &amp; usage count</b> — one click copies the text to paste into a proposal; "Used 15 times" shows which snippets are proven winners.</li>
+      </ol>
+      <div class="note tip"><b>Workflow:</b> writing a proposal or grant? Come here first. Search the section you need, copy the strongest version, tailor it, and submit. The usage counts steer you to what's worked before.</div>
+      <div class="next"><button onclick="go('email')">← Email Marketing</button><button onclick="go('admin')">Next: Admin →</button></div>
+    </section>
+
+    <!-- ADMIN -->
+    <section class="pane" id="admin">
+      <div class="crumbs">Admin &amp; reference · Admin</div>
+      <h1>Admin &amp; Member Clients</h1>
+      <p class="lede">The owner/admin area — manage users, connect tools, and handle the accounts set up on the CRM. Most day-to-day users won't need this; it sits at the bottom of the menu.</p>
+      <figure class="shot"><div class="frame"><div class="shotwrap"><img src="screenshots/16-admin.png" alt="Admin dashboard" loading="lazy"><span class="pin" data-n="1" style="left:40%;top:28%" title="Admin Dashboard">1</span></div></div>
+        <figcaption><span>The Admin dashboard.</span><a href="screenshots/16-admin.png" target="_blank">Open full image ↗</a></figcaption></figure>
+      <ol class="legend">
+        <li><b>Admin Dashboard</b> — users, roles, and system settings. Quick actions to add a user, manage roles &amp; permissions, and review escalations.</li>
+        <li><b>Member Clients</b> — the accounts set up on the CRM, with their tier, status, and setup progress. (Different from Companies, which is your BD pipeline.)</li>
+        <li><b>Integrations</b> — connect outside tools, including <b>Stripe</b> for payments.</li>
+        <li><b>Finance</b> (Payments, Financial Runway) — sits just above Admin for money-in and cash-runway views.</li>
+      </ol>
+      <h4>Settings &amp; Help</h4>
+      <p>At the very bottom of the menu: <b>Settings</b> (starting with Change Password), <b>Help</b> for support, and <b>Sign Out</b>. Use Sign Out on shared computers.</p>
+      <div class="note warn"><b>Ask an admin, don't do solo:</b> connecting integrations (Stripe, Microsoft 365), bulk-importing members, changing permissions, or sending a live email campaign. Most actions are reversible — sends and deletes are not.</div>
+      <div class="next"><button onclick="go('content')">← Content</button><button onclick="go('workflow')">Next: Daily workflow →</button></div>
+    </section>
+
+    <!-- WORKFLOW -->
+    <section class="pane" id="workflow">
+      <div class="crumbs">Admin &amp; reference · Daily workflow</div>
+      <h1>Your everyday workflow</h1>
+      <p class="lede">Once the pieces make sense, most days follow a simple rhythm.</p>
+      <h3>A typical morning (5 minutes)</h3>
+      <ol class="steps">
+        <li>Open the <a onclick="go('dashboard')">Dashboard</a>. Skim Recent Activity and My Tasks.</li>
+        <li>Open <a onclick="go('tasks')">Tasks</a>, click <b>Sync All Sources</b>, and see what's due.</li>
+        <li>Glance at the <a onclick="go('pipeline')">Sales Pipeline</a> to see if any deal needs a nudge.</li>
+      </ol>
+      <h3>Common jobs → where to go</h3>
+      <div class="card">
+        <ul class="clean">
+          <li><b>Log a payment</b> → Members → open the person → Payment History → Record Payment.</li>
+          <li><b>Record a promised payment</b> → Members → open the person → Record Commitment.</li>
+          <li><b>Start working a big deal</b> → Members → open the person → Track Major Deal → it appears in Sales Pipeline.</li>
+          <li><b>Find lapsed customers to win back</b> → Members → turn on the Lapsed Members filter.</li>
+          <li><b>After a networking meeting</b> → Voice Notes → upload/record → review auto-created contacts &amp; next steps.</li>
+          <li><b>Court a new partner org</b> → Companies → add it → move it along the stages.</li>
+          <li><b>Write a proposal or grant</b> → Content Repository (copy proven text) + a Projects board to track it.</li>
+          <li><b>Invite people to an event</b> → Events (create it) → Email Marketing (send the invite).</li>
+        </ul>
+      </div>
+      <div class="note"><b>How it connects:</b> <b>Members</b> is the hub. Payments flow from Members into the <b>Sales Pipeline</b>. Follow-ups from Members, <b>Voice Notes</b>, and <b>Projects</b> all roll up into <b>Tasks</b>. <b>Events</b> and <b>Email Marketing</b> reach back out to the same people. Keep Members accurate and everything else stays trustworthy.</div>
+      <div class="next"><button onclick="go('admin')">← Admin</button><button onclick="go('glossary')">Next: Glossary →</button></div>
+    </section>
+
+    <!-- GLOSSARY -->
+    <section class="pane" id="glossary">
+      <div class="crumbs">Admin &amp; reference · Glossary</div>
+      <h1>Glossary</h1>
+      <p class="lede">Every term in this guide, in plain English.</p>
+      <div class="card">
+        <dl class="gloss">
+          <dt>CRM</dt><dd>Customer Relationship Management — the system itself. One home for people, money, work, and outreach.</dd>
+          <dt>Member</dt><dd>Any person in the CRM: customer, prospect, supporter.<dd class="where">Where: Members</dd></dd>
+          <dt>Payment</dt><dd>Money actually received from a member.<dd class="where">Where: 360° view → Record Payment</dd></dd>
+          <dt>Commitment</dt><dd>Money promised now, to be paid later.<dd class="where">Where: 360° view → Record Commitment</dd></dd>
+          <dt>Deal / Major Deal</dt><dd>A sale you're actively working, tracked through stages.<dd class="where">Where: Track Major Deal → Sales Pipeline</dd></dd>
+          <dt>Lifetime Value (LTV)</dt><dd>The total a member has ever paid you.<dd class="where">Where: on each Member card</dd></dd>
+          <dt>Lapsed Member</dt><dd>Someone who bought last year but nothing yet this year — a win-back target.<dd class="where">Where: Members → Lapsed Members filter</dd></dd>
+          <dt>Sales Pipeline</dt><dd>The collection of deals and the stages they move through.<dd class="where">Where: Sales Pipeline</dd></dd>
+          <dt>Customer Acquisition Cost (CAC)</dt><dd>Roughly what it costs to win each deal.</dd>
+          <dt>Weighted value</dt><dd>A deal's dollar amount × its probability of closing — a realistic forecast.</dd>
+          <dt>Company</dt><dd>An organization you're courting as a partner/account.<dd class="where">Where: Companies</dd></dd>
+          <dt>Member Client</dt><dd>An account already set up on the CRM (tier, status, setup).<dd class="where">Where: Admin → Member Clients</dd></dd>
+          <dt>Contact</dt><dd>A non-customer person (vendor, partner, advisor) in the directory.<dd class="where">Where: Contacts</dd></dd>
+          <dt>Board (Kanban)</dt><dd>A visual project layout where cards move across columns as work progresses.<dd class="where">Where: Projects</dd></dd>
+          <dt>Grant</dt><dd>Grant work you manage — proposals and grant applications are supported alongside sales.<dd class="where">Where: Content Repository, linked in the 360° view</dd></dd>
+          <dt>Semantic Search</dt><dd>Search by meaning rather than exact words.<dd class="where">Where: Content Repository</dd></dd>
+          <dt>Stripe</dt><dd>The payment processor you connect to auto-sync online payments and subscriptions.<dd class="where">Where: Dashboard / Admin → Integrations</dd></dd>
+        </dl>
+      </div>
+      <div class="note tip">That's the whole system. Jump back to any section from the left menu, or use the filter box to find a topic fast.</div>
+      <div class="next"><button onclick="go('workflow')">← Daily workflow</button><button onclick="go('welcome')">Back to start ↺</button></div>
+    </section>
+  </main>
+</div>
+
+<script>
+  var crumbMap = {
+    welcome:"Welcome & orientation", dashboard:"Dashboard", members:"Members",
+    contacts:"Contacts", pipeline:"Sales Pipeline", companies:"Companies", calendar:"Calendar",
+    projects:"Projects", tasks:"Tasks", voice:"Voice Notes", events:"Events",
+    email:"Email Marketing", content:"Content Repository", admin:"Admin & Member Clients",
+    workflow:"Daily workflow", glossary:"Glossary"
+  };
+  function go(key){
+    document.querySelectorAll('.pane').forEach(function(p){p.classList.toggle('active',p.id===key);});
+    document.querySelectorAll('.navlink').forEach(function(b){b.classList.toggle('active',b.dataset.k===key);});
+    document.getElementById('crumb').textContent = crumbMap[key] || '';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+  document.querySelectorAll('.navlink').forEach(function(b){ b.addEventListener('click',function(){go(b.dataset.k);}); });
+  document.querySelectorAll('.pin').forEach(function(pin){
+    pin.addEventListener('click',function(){
+      var pane=pin.closest('.pane'); var n=parseInt(pin.dataset.n,10);
+      var items=pane.querySelectorAll('ol.legend li');
+      items.forEach(function(x){x.classList.remove('hl');});
+      var li=items[n-1];
+      if(li){li.classList.add('hl'); li.scrollIntoView({behavior:'smooth',block:'center'});}
+      pin.classList.remove('ping'); void pin.offsetWidth; pin.classList.add('ping');
+    });
+  });
+  function filterNav(q){
+    q=q.trim().toLowerCase();
+    document.querySelectorAll('.navlink').forEach(function(b){
+      b.classList.toggle('hide', q && b.textContent.toLowerCase().indexOf(q)===-1);
+    });
+  }
+</script>
+</body>
+</html>
